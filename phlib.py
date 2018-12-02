@@ -43,26 +43,26 @@ def lift_force(ω1, ω2, ω3, ω4):
 
 
 # Angular accelerations
-def d2φ(ω2, ω4):
+def calc_d2φ(ω2, ω4):
     return τφ(ω2, ω4) / Jx
 
 
-def d2θ(ω1, ω3):
+def calc_d2θ(ω1, ω3):
     return τθ(ω1, ω3) / Jy
 
 
-def d2ψ(ω1, ω2, ω3, ω4):
+def calc_d2ψ(ω1, ω2, ω3, ω4):
     return τψ(ω1, ω2, ω3, ω4) / Jz
 
 
 # Linear accelerations
-def d2x(ω1, ω2, ω3, ω4, φ, θ, ψ):
+def calc_d2x(ω1, ω2, ω3, ω4, φ, θ, ψ):
     return lift_force(ω1, ω2, ω3, ω4) / m * (cos(φ) * sin(θ) * cos(ψ) + sin(φ) * sin(ψ))
 
 
-def d2y(ω1, ω2, ω3, ω4, φ, θ, ψ):
+def calc_d2y(ω1, ω2, ω3, ω4, φ, θ, ψ):
     return lift_force(ω1, ω2, ω3, ω4) / m * (cos(φ) * sin(θ) * sin(ψ) - sin(φ) * cos(ψ))
 
 
-def d2z(ω1, ω2, ω3, ω4, φ, θ, ψ):
+def calc_d2z(ω1, ω2, ω3, ω4, φ, θ, ψ):
     return lift_force(ω1, ω2, ω3, ω4) / m * (cos(φ) * cos(θ)) - g
