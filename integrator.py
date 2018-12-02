@@ -49,9 +49,9 @@ def integrate(ω1, ω2, ω3, ω4, interval):
         ψ.append(ψ[i - 1] + d1ψ[i - 1] * interval + d2ψ[i] * interval ** 2 / 2)
 
         # Find linear accelerations
-        d2x.append(calc_d2x(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i]))
-        d2y.append(calc_d2y(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i]))
-        d2z.append(calc_d2z(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i]))
+        d2x.append(calc_d2x(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1x[i - 1]))
+        d2y.append(calc_d2y(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1y[i - 1]))
+        d2z.append(calc_d2z(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1z[i - 1]))
 
         # Find linear velocities
         d1x.append(d1x[i - 1] + d2x[i] * interval)
