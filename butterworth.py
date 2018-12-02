@@ -31,13 +31,13 @@ def θ_desired(x_desired, x, d1x, d1z):
                 (g + copysign(c * Sz * ρ * d1z ** 2 / 2, d1z)))
 
 
-def φ_desired(y_desired, y, d1y, d1z):
-    return -atan((d2y_desired(y_desired, y, d1y) + copysign(c * Sy * ρ * d1y ** 2 / 2, d1y)) /
+def φ_desired(y_desired, y, d1y, d1z, θ):
+    return -atan((d2y_desired(y_desired, y, d1y) + copysign(c * Sy * ρ * d1y ** 2 / 2, d1y)) * cos(θ) /
                  (g + copysign(c * Sz * ρ * d1z ** 2 / 2, d1z)))
 
 
-def τφ_desired(y_desired, y, d1y, d1z, φ, d1φ):
-    return Jx * (-c1φ() * (φ - φ_desired(y_desired, y, d1y, d1z)) - c2φ() * d1φ)
+def τφ_desired(y_desired, y, d1y, d1z, φ, d1φ, θ):
+    return Jx * (-c1φ() * (φ - φ_desired(y_desired, y, d1y, d1z, θ)) - c2φ() * d1φ)
 
 
 def τθ_desired(x_desired, x, d1x, d1z, θ, d1θ):
@@ -67,7 +67,7 @@ def ω2_desired(x, d1x, x_desired,
                θ, d1θ,
                ψ, d1ψ):
     A = lift_force_desired(z_desired, z, d1z, φ, θ, ψ) / (4 * k)
-    B = τφ_desired(y_desired, y, d1y, d1z, φ, d1φ) / (2 * k * l)
+    B = τφ_desired(y_desired, y, d1y, d1z, φ, d1φ, θ) / (2 * k * l)
     C = τψ_desired(ψ, d1ψ) / (4 * b)
     return (A - B + C) ** 0.5
 
@@ -91,7 +91,7 @@ def ω4_desired(x, d1x, x_desired,
                θ, d1θ,
                ψ, d1ψ):
     A = lift_force_desired(z_desired, z, d1z, φ, θ, ψ) / (4 * k)
-    B = τφ_desired(y_desired, y, d1y, d1z, φ, d1φ) / (2 * k * l)
+    B = τφ_desired(y_desired, y, d1y, d1z, φ, d1φ, θ) / (2 * k * l)
     C = τψ_desired(ψ, d1ψ) / (4 * b)
     return (A + B + C) ** 0.5
 
