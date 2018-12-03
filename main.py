@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from integrated_pd_controller_integrator import integrate
 
 # Destination point
-desired = {"x": 50, "y": 0, "z": 500}
+desired = {"x": 5, "y": 10, "z": 10}
 
 x, y, z = integrate(x_desired=desired["x"],
                     y_desired=desired["y"],

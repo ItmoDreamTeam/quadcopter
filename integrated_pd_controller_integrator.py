@@ -77,14 +77,9 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
 
         # Find engines' velocities
 
-        if type(ω1_d) is complex:
-            ω1_d = 0
-        if type(ω2_d) is complex:
-            ω2_d = 0
-        if type(ω3_d) is complex:
-            ω3_d = 0
-        if type(ω4_d) is complex:
-            ω4_d = 0
+        if type(ω1_d) is complex or type(ω2_d) is complex or \
+                type(ω3_d) is complex or type(ω4_d) is complex:
+            ω1_d = ω2_d = ω3_d = ω4_d = 340
 
         ω1.append(min(max(ω1_d, 0), 500))
         ω2.append(min(max(ω2_d, 0), 500))
@@ -105,6 +100,11 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
         φ.append(φ[i - 1] + d1φ[i - 1] * interval + d2φ[i] * interval ** 2 / 2)
         θ.append(θ[i - 1] + d1θ[i - 1] * interval + d2θ[i] * interval ** 2 / 2)
         ψ.append(ψ[i - 1] + d1ψ[i - 1] * interval + d2ψ[i] * interval ** 2 / 2)
+
+        # Bound angles
+        φ[i] = min(max(φ[i], -0.15), 0.15)
+        θ[i] = min(max(θ[i], -0.15), 0.15)
+        ψ[i] = min(max(ψ[i], -0.15), 0.15)
 
         # Find linear accelerations
         d2x.append(calc_d2x(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1x[i - 1]))
