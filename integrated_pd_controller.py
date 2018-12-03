@@ -68,13 +68,13 @@ def calc_Dz(z, d1z, d2z, z_desired):
 
 
 # Equations (24) (http://sal.aalto.fi/publications/pdf-files/eluu11_public.pdf)
-def ω1_desired(x, d1x, d2x, x_desired,
-               y, d1y, d2y, y_desired,
-               z, d1z, d2z, z_desired,
-               φ, d1φ, φcs,
-               θ, d1θ, θcs,
-               ψ, d1ψ, ψcs,
-               interval):
+def ω_desired_params(x, d1x, d2x, x_desired,
+                     y, d1y, d2y, y_desired,
+                     z, d1z, d2z, z_desired,
+                     φ, d1φ, φcs,
+                     θ, d1θ, θcs,
+                     ψ, d1ψ, ψcs,
+                     interval):
     Dx = calc_Dx(x, d1x, d2x, x_desired)
     Dy = calc_Dy(y, d1y, d2y, y_desired)
     Dz = calc_Dz(z, d1z, d2z, z_desired)
@@ -91,11 +91,26 @@ def ω1_desired(x, d1x, d2x, x_desired,
     φcs.append(φc)
     θcs.append(θc)
     ψcs.append(ψc)
+    return T, τφ, τθ, τψ
 
+
+def ω1_desired(x, d1x, d2x, x_desired,
+               y, d1y, d2y, y_desired,
+               z, d1z, d2z, z_desired,
+               φ, d1φ, φcs,
+               θ, d1θ, θcs,
+               ψ, d1ψ, ψcs,
+               interval):
+    T, τφ, τθ, τψ = ω_desired_params(x, d1x, d2x, x_desired,
+                                     y, d1y, d2y, y_desired,
+                                     z, d1z, d2z, z_desired,
+                                     φ, d1φ, φcs,
+                                     θ, d1θ, θcs,
+                                     ψ, d1ψ, ψcs,
+                                     interval)
     A = T / (4 * k)
     B = τθ / (2 * k * l)
     C = τψ / (4 * b)
-
     return (A - B - C) ** 0.5
 
 
@@ -106,27 +121,16 @@ def ω2_desired(x, d1x, d2x, x_desired,
                θ, d1θ, θcs,
                ψ, d1ψ, ψcs,
                interval):
-    Dx = calc_Dx(x, d1x, d2x, x_desired)
-    Dy = calc_Dy(y, d1y, d2y, y_desired)
-    Dz = calc_Dz(z, d1z, d2z, z_desired)
-
-    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
-
-    φc = calc_φc(Dx, Dy, Dz, ψ)
-    θc = calc_θc(Dx, Dy, Dz, ψ)
-    ψc = ψ
-
-    τφ = calc_τφc(φ, d1φ, φc, (φc - φcs[-1]) / interval)
-    τθ = calc_τθc(θ, d1θ, θc, (θc - θcs[-1]) / interval)
-    τψ = calc_τψc(ψ, d1ψ, ψc, (ψc - ψcs[-1]) / interval)
-    φcs.append(φc)
-    θcs.append(θc)
-    ψcs.append(ψc)
-
+    T, τφ, τθ, τψ = ω_desired_params(x, d1x, d2x, x_desired,
+                                     y, d1y, d2y, y_desired,
+                                     z, d1z, d2z, z_desired,
+                                     φ, d1φ, φcs,
+                                     θ, d1θ, θcs,
+                                     ψ, d1ψ, ψcs,
+                                     interval)
     A = T / (4 * k)
     B = τφ / (2 * k * l)
     C = τψ / (4 * b)
-
     return (A - B + C) ** 0.5
 
 
@@ -137,27 +141,16 @@ def ω3_desired(x, d1x, d2x, x_desired,
                θ, d1θ, θcs,
                ψ, d1ψ, ψcs,
                interval):
-    Dx = calc_Dx(x, d1x, d2x, x_desired)
-    Dy = calc_Dy(y, d1y, d2y, y_desired)
-    Dz = calc_Dz(z, d1z, d2z, z_desired)
-
-    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
-
-    φc = calc_φc(Dx, Dy, Dz, ψ)
-    θc = calc_θc(Dx, Dy, Dz, ψ)
-    ψc = ψ
-
-    τφ = calc_τφc(φ, d1φ, φc, (φc - φcs[-1]) / interval)
-    τθ = calc_τθc(θ, d1θ, θc, (θc - θcs[-1]) / interval)
-    τψ = calc_τψc(ψ, d1ψ, ψc, (ψc - ψcs[-1]) / interval)
-    φcs.append(φc)
-    θcs.append(θc)
-    ψcs.append(ψc)
-
+    T, τφ, τθ, τψ = ω_desired_params(x, d1x, d2x, x_desired,
+                                     y, d1y, d2y, y_desired,
+                                     z, d1z, d2z, z_desired,
+                                     φ, d1φ, φcs,
+                                     θ, d1θ, θcs,
+                                     ψ, d1ψ, ψcs,
+                                     interval)
     A = T / (4 * k)
     B = τθ / (2 * k * l)
     C = τψ / (4 * b)
-
     return (A + B - C) ** 0.5
 
 
@@ -168,25 +161,14 @@ def ω4_desired(x, d1x, d2x, x_desired,
                θ, d1θ, θcs,
                ψ, d1ψ, ψcs,
                interval):
-    Dx = calc_Dx(x, d1x, d2x, x_desired)
-    Dy = calc_Dy(y, d1y, d2y, y_desired)
-    Dz = calc_Dz(z, d1z, d2z, z_desired)
-
-    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
-
-    φc = calc_φc(Dx, Dy, Dz, ψ)
-    θc = calc_θc(Dx, Dy, Dz, ψ)
-    ψc = ψ
-
-    τφ = calc_τφc(φ, d1φ, φc, (φc - φcs[-1]) / interval)
-    τθ = calc_τθc(θ, d1θ, θc, (θc - θcs[-1]) / interval)
-    τψ = calc_τψc(ψ, d1ψ, ψc, (ψc - ψcs[-1]) / interval)
-    φcs.append(φc)
-    θcs.append(θc)
-    ψcs.append(ψc)
-
+    T, τφ, τθ, τψ = ω_desired_params(x, d1x, d2x, x_desired,
+                                     y, d1y, d2y, y_desired,
+                                     z, d1z, d2z, z_desired,
+                                     φ, d1φ, φcs,
+                                     θ, d1θ, θcs,
+                                     ψ, d1ψ, ψcs,
+                                     interval)
     A = T / (4 * k)
     B = τφ / (2 * k * l)
     C = τψ / (4 * b)
-
     return (A + B + C) ** 0.5
