@@ -79,10 +79,10 @@ def integrate_control(x_desired, y_desired, z_desired, ω0, interval, iterations
                           ψ[i - 1], d1ψ[i - 1])
 
         # Find derivatives of engines' accelerations
-        d2ω1.append(-c1ω() * (ω1[i - 1] - ω1_d) - c2ψ() * d1ω1[i - 1])
-        d2ω2.append(-c1ω() * (ω2[i - 1] - ω2_d) - c2ψ() * d1ω2[i - 1])
-        d2ω3.append(-c1ω() * (ω3[i - 1] - ω3_d) - c2ψ() * d1ω3[i - 1])
-        d2ω4.append(-c1ω() * (ω4[i - 1] - ω4_d) - c2ψ() * d1ω4[i - 1])
+        d2ω1.append(-c1ω() * (ω1[i - 1] - ω1_d) - c2ω() * d1ω1[i - 1])
+        d2ω2.append(-c1ω() * (ω2[i - 1] - ω2_d) - c2ω() * d1ω2[i - 1])
+        d2ω3.append(-c1ω() * (ω3[i - 1] - ω3_d) - c2ω() * d1ω3[i - 1])
+        d2ω4.append(-c1ω() * (ω4[i - 1] - ω4_d) - c2ω() * d1ω4[i - 1])
 
         # Find engines' accelerations
         d1ω1.append(d1ω1[i - 1] + d2ω1[i] * interval)
