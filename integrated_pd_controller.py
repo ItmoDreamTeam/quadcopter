@@ -71,14 +71,18 @@ def calc_Dz(z, d1z, d2z, z_desired):
 def ω1_desired(x, d1x, d2x, x_desired,
                y, d1y, d2y, y_desired,
                z, d1z, d2z, z_desired,
-               φ, d1φ, φc, d1φc,
-               θ, d1θ, θc, d1θc,
-               ψ, d1ψ, ψc, d1ψc):
+               φ, d1φ, d1φc,
+               θ, d1θ, d1θc,
+               ψ, d1ψ, d1ψc):
     Dx = calc_Dx(x, d1x, d2x, x_desired)
     Dy = calc_Dy(y, d1y, d2y, y_desired)
     Dz = calc_Dz(z, d1z, d2z, z_desired)
 
     T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    φc = calc_φc(Dx, Dy, Dz, ψ)
+    θc = calc_θc(Dx, Dy, Dz, ψ)
+    ψc = ψ
 
     τφ = calc_τφc(φ, d1φ, φc, d1φc)
     τθ = calc_τθc(θ, d1θ, θc, d1θc)
@@ -94,14 +98,18 @@ def ω1_desired(x, d1x, d2x, x_desired,
 def ω2_desired(x, d1x, d2x, x_desired,
                y, d1y, d2y, y_desired,
                z, d1z, d2z, z_desired,
-               φ, d1φ, φc, d1φc,
-               θ, d1θ, θc, d1θc,
-               ψ, d1ψ, ψc, d1ψc):
+               φ, d1φ, d1φc,
+               θ, d1θ, d1θc,
+               ψ, d1ψ, d1ψc):
     Dx = calc_Dx(x, d1x, d2x, x_desired)
     Dy = calc_Dy(y, d1y, d2y, y_desired)
     Dz = calc_Dz(z, d1z, d2z, z_desired)
 
     T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    φc = calc_φc(Dx, Dy, Dz, ψ)
+    θc = calc_θc(Dx, Dy, Dz, ψ)
+    ψc = ψ
 
     τφ = calc_τφc(φ, d1φ, φc, d1φc)
     τθ = calc_τθc(θ, d1θ, θc, d1θc)
@@ -117,14 +125,18 @@ def ω2_desired(x, d1x, d2x, x_desired,
 def ω3_desired(x, d1x, d2x, x_desired,
                y, d1y, d2y, y_desired,
                z, d1z, d2z, z_desired,
-               φ, d1φ, φc, d1φc,
-               θ, d1θ, θc, d1θc,
-               ψ, d1ψ, ψc, d1ψc):
+               φ, d1φ, d1φc,
+               θ, d1θ, d1θc,
+               ψ, d1ψ, d1ψc):
     Dx = calc_Dx(x, d1x, d2x, x_desired)
     Dy = calc_Dy(y, d1y, d2y, y_desired)
     Dz = calc_Dz(z, d1z, d2z, z_desired)
 
     T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    φc = calc_φc(Dx, Dy, Dz, ψ)
+    θc = calc_θc(Dx, Dy, Dz, ψ)
+    ψc = ψ
 
     τφ = calc_τφc(φ, d1φ, φc, d1φc)
     τθ = calc_τθc(θ, d1θ, θc, d1θc)
@@ -140,14 +152,18 @@ def ω3_desired(x, d1x, d2x, x_desired,
 def ω4_desired(x, d1x, d2x, x_desired,
                y, d1y, d2y, y_desired,
                z, d1z, d2z, z_desired,
-               φ, d1φ, φc, d1φc,
-               θ, d1θ, θc, d1θc,
-               ψ, d1ψ, ψc, d1ψc):
+               φ, d1φ, d1φc,
+               θ, d1θ, d1θc,
+               ψ, d1ψ, d1ψc):
     Dx = calc_Dx(x, d1x, d2x, x_desired)
     Dy = calc_Dy(y, d1y, d2y, y_desired)
     Dz = calc_Dz(z, d1z, d2z, z_desired)
 
     T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    φc = calc_φc(Dx, Dy, Dz, ψ)
+    θc = calc_θc(Dx, Dy, Dz, ψ)
+    ψc = ψ
 
     τφ = calc_τφc(φ, d1φ, φc, d1φc)
     τθ = calc_τθc(θ, d1θ, θc, d1θc)

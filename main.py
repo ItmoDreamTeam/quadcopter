@@ -4,9 +4,9 @@ from mpl_toolkits.mplot3d import Axes3D
 from integrated_pd_controller_integrator import integrate
 
 x, y, z = integrate(x_desired=0,
-                    y_desired=0,
+                    y_desired=10,
                     z_desired=0,
-                    ω0=500,
+                    ω0=10,
                     interval=0.1,
                     iterations=100)
 
