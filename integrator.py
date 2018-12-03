@@ -2,7 +2,7 @@ from phlib import *
 from butterworth import *
 
 
-def integrate_control(x_desired, y_desired, z_desired, ω0, interval):
+def integrate_control(x_desired, y_desired, z_desired, ω0, interval, iterations):
     # Coordinates
     x = [0]
     y = [0]
@@ -51,7 +51,7 @@ def integrate_control(x_desired, y_desired, z_desired, ω0, interval):
     d2ω3 = [0]
     d2ω4 = [0]
 
-    for i in range(1, 10):
+    for i in range(1, iterations):
         # Find desired engines velocities
         ω1_d = ω1_desired(x[i - 1], d1x[i - 1], x_desired,
                           y[i - 1], d1y[i - 1], y_desired,
@@ -91,10 +91,10 @@ def integrate_control(x_desired, y_desired, z_desired, ω0, interval):
         d1ω4.append(d1ω4[i - 1] + d2ω4[i] * interval)
 
         # Find engines' velocities
-        ω1.append(ω1[i - 1] + d1ω1[i - 1] * interval + d2ω1[i] * interval ** 2 / 2)
-        ω2.append(ω2[i - 1] + d1ω2[i - 1] * interval + d2ω2[i] * interval ** 2 / 2)
-        ω3.append(ω3[i - 1] + d1ω3[i - 1] * interval + d2ω3[i] * interval ** 2 / 2)
-        ω4.append(ω4[i - 1] + d1ω4[i - 1] * interval + d2ω4[i] * interval ** 2 / 2)
+        ω1.append(min(max(ω1[i - 1] + d1ω1[i - 1] * interval + d2ω1[i] * interval ** 2 / 2, 100), 500))
+        ω2.append(min(max(ω2[i - 1] + d1ω2[i - 1] * interval + d2ω2[i] * interval ** 2 / 2, 100), 500))
+        ω3.append(min(max(ω3[i - 1] + d1ω3[i - 1] * interval + d2ω3[i] * interval ** 2 / 2, 100), 500))
+        ω4.append(min(max(ω4[i - 1] + d1ω4[i - 1] * interval + d2ω4[i] * interval ** 2 / 2, 100), 500))
 
         # Find angular accelerations
         d2φ.append(calc_d2φ(ω2[i], ω4[i]))

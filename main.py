@@ -11,7 +11,7 @@ z_desired = 10
 # Time interval (step) -> 0, seconds
 interval = 0.1
 
-x, y, z = integrator.integrate_control(x_desired, y_desired, z_desired, ω0=0, interval=interval)
+x, y, z = integrator.integrate_control(x_desired, y_desired, z_desired, ω0=0, interval=0.1, iterations=100)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, aspect='equal', projection='3d')
