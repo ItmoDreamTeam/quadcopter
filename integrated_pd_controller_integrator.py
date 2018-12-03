@@ -2,7 +2,7 @@ from phlib import *
 from integrated_pd_controller import *
 
 
-def integrate(x_desired, y_desired, z_desired, ω0, interval, iterations):
+def integrate(x_desired, y_desired, z_desired, interval, iterations):
     # Coordinates
     x = [0]
     y = [0]
@@ -34,10 +34,10 @@ def integrate(x_desired, y_desired, z_desired, ω0, interval, iterations):
     d2ψ = [0]
 
     # Engines' velocities
-    ω1 = [ω0]
-    ω2 = [ω0]
-    ω3 = [ω0]
-    ω4 = [ω0]
+    ω1 = [0]
+    ω2 = [0]
+    ω3 = [0]
+    ω4 = [0]
 
     # Control angles and their derivatives
     φc = [0]
