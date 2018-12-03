@@ -5,3 +5,7 @@
 Последние три уравнения -- законы вращательного движения.
 
 ![System of equations of movement](res/12.png)
+
+где
+
+![Equations (5)-(8)](res/5-8.png)
