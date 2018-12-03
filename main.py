@@ -1,17 +1,14 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-import integrator
+from integrated_pd_controller_integrator import integrate
 
-# Coordinates to achieve by the end of the flight
-x_desired = 10
-y_desired = 10
-z_desired = 10
-
-# Time interval (step) -> 0, seconds
-interval = 0.1
-
-x, y, z = integrator.integrate_control(x_desired, y_desired, z_desired, ω0=0, interval=0.1, iterations=100)
+x, y, z = integrate(x_desired=0,
+                    y_desired=0,
+                    z_desired=0,
+                    ω0=500,
+                    interval=0.1,
+                    iterations=100)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, aspect='equal', projection='3d')
