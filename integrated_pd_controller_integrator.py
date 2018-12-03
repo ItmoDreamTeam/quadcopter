@@ -41,33 +41,39 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
 
     # Control angles and their derivatives
     φc = [0]
+    θc = [0]
+    ψc = [0]
 
     for i in range(1, iterations):
         # Find desired engines velocities
         ω1_d = ω1_desired(x[i - 1], d1x[i - 1], d2x[i - 1], x_desired,
                           y[i - 1], d1y[i - 1], d2y[i - 1], y_desired,
                           z[i - 1], d1z[i - 1], d2z[i - 1], z_desired,
-                          φ[i - 1], d1φ[i - 1], 0,
-                          θ[i - 1], d1θ[i - 1], 0,
-                          ψ[i - 1], d1ψ[i - 1], 0)
+                          φ[i - 1], d1φ[i - 1], φc,
+                          θ[i - 1], d1θ[i - 1], θc,
+                          ψ[i - 1], d1ψ[i - 1], ψc,
+                          interval)
         ω2_d = ω2_desired(x[i - 1], d1x[i - 1], d2x[i - 1], x_desired,
                           y[i - 1], d1y[i - 1], d2y[i - 1], y_desired,
                           z[i - 1], d1z[i - 1], d2z[i - 1], z_desired,
-                          φ[i - 1], d1φ[i - 1], 0,
-                          θ[i - 1], d1θ[i - 1], 0,
-                          ψ[i - 1], d1ψ[i - 1], 0)
+                          φ[i - 1], d1φ[i - 1], φc,
+                          θ[i - 1], d1θ[i - 1], θc,
+                          ψ[i - 1], d1ψ[i - 1], ψc,
+                          interval)
         ω3_d = ω3_desired(x[i - 1], d1x[i - 1], d2x[i - 1], x_desired,
                           y[i - 1], d1y[i - 1], d2y[i - 1], y_desired,
                           z[i - 1], d1z[i - 1], d2z[i - 1], z_desired,
-                          φ[i - 1], d1φ[i - 1], 0,
-                          θ[i - 1], d1θ[i - 1], 0,
-                          ψ[i - 1], d1ψ[i - 1], 0)
+                          φ[i - 1], d1φ[i - 1], φc,
+                          θ[i - 1], d1θ[i - 1], θc,
+                          ψ[i - 1], d1ψ[i - 1], ψc,
+                          interval)
         ω4_d = ω4_desired(x[i - 1], d1x[i - 1], d2x[i - 1], x_desired,
                           y[i - 1], d1y[i - 1], d2y[i - 1], y_desired,
                           z[i - 1], d1z[i - 1], d2z[i - 1], z_desired,
-                          φ[i - 1], d1φ[i - 1], 0,
-                          θ[i - 1], d1θ[i - 1], 0,
-                          ψ[i - 1], d1ψ[i - 1], 0)
+                          φ[i - 1], d1φ[i - 1], φc,
+                          θ[i - 1], d1θ[i - 1], θc,
+                          ψ[i - 1], d1ψ[i - 1], ψc,
+                          interval)
 
         # Find engines' velocities
         ω1.append(min(max(ω1_d, 100), 500))
