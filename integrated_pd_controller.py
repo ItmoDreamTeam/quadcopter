@@ -65,3 +65,96 @@ def calc_Dy(y, d1y, d2y, y_desired):
 
 def calc_Dz(z, d1z, d2z, z_desired):
     return KzP * (z_desired - z) - KzD * d1z - KzDD * d2z
+
+
+# Equations (24) (http://sal.aalto.fi/publications/pdf-files/eluu11_public.pdf)
+def ω1_desired(x, d1x, d2x, x_desired,
+               y, d1y, d2y, y_desired,
+               z, d1z, d2z, z_desired,
+               φ, d1φ, φc, d1φc,
+               θ, d1θ, θc, d1θc,
+               ψ, d1ψ, ψc, d1ψc):
+    Dx = calc_Dx(x, d1x, d2x, x_desired)
+    Dy = calc_Dy(y, d1y, d2y, y_desired)
+    Dz = calc_Dz(z, d1z, d2z, z_desired)
+
+    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    τφ = calc_τφc(φ, d1φ, φc, d1φc)
+    τθ = calc_τθc(θ, d1θ, θc, d1θc)
+    τψ = calc_τψc(ψ, d1ψ, ψc, d1ψc)
+
+    A = T / (4 * k)
+    B = τθ / (2 * k * l)
+    C = τψ / (4 * b)
+
+    return (A - B - C) ** 0.5
+
+
+def ω2_desired(x, d1x, d2x, x_desired,
+               y, d1y, d2y, y_desired,
+               z, d1z, d2z, z_desired,
+               φ, d1φ, φc, d1φc,
+               θ, d1θ, θc, d1θc,
+               ψ, d1ψ, ψc, d1ψc):
+    Dx = calc_Dx(x, d1x, d2x, x_desired)
+    Dy = calc_Dy(y, d1y, d2y, y_desired)
+    Dz = calc_Dz(z, d1z, d2z, z_desired)
+
+    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    τφ = calc_τφc(φ, d1φ, φc, d1φc)
+    τθ = calc_τθc(θ, d1θ, θc, d1θc)
+    τψ = calc_τψc(ψ, d1ψ, ψc, d1ψc)
+
+    A = T / (4 * k)
+    B = τφ / (2 * k * l)
+    C = τψ / (4 * b)
+
+    return (A - B + C) ** 0.5
+
+
+def ω3_desired(x, d1x, d2x, x_desired,
+               y, d1y, d2y, y_desired,
+               z, d1z, d2z, z_desired,
+               φ, d1φ, φc, d1φc,
+               θ, d1θ, θc, d1θc,
+               ψ, d1ψ, ψc, d1ψc):
+    Dx = calc_Dx(x, d1x, d2x, x_desired)
+    Dy = calc_Dy(y, d1y, d2y, y_desired)
+    Dz = calc_Dz(z, d1z, d2z, z_desired)
+
+    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    τφ = calc_τφc(φ, d1φ, φc, d1φc)
+    τθ = calc_τθc(θ, d1θ, θc, d1θc)
+    τψ = calc_τψc(ψ, d1ψ, ψc, d1ψc)
+
+    A = T / (4 * k)
+    B = τθ / (2 * k * l)
+    C = τψ / (4 * b)
+
+    return (A + B - C) ** 0.5
+
+
+def ω4_desired(x, d1x, d2x, x_desired,
+               y, d1y, d2y, y_desired,
+               z, d1z, d2z, z_desired,
+               φ, d1φ, φc, d1φc,
+               θ, d1θ, θc, d1θc,
+               ψ, d1ψ, ψc, d1ψc):
+    Dx = calc_Dx(x, d1x, d2x, x_desired)
+    Dy = calc_Dy(y, d1y, d2y, y_desired)
+    Dz = calc_Dz(z, d1z, d2z, z_desired)
+
+    T = calc_Tc(Dx, Dy, Dz, φ, θ, ψ)
+
+    τφ = calc_τφc(φ, d1φ, φc, d1φc)
+    τθ = calc_τθc(θ, d1θ, θc, d1θc)
+    τψ = calc_τψc(ψ, d1ψ, ψc, d1ψc)
+
+    A = T / (4 * k)
+    B = τφ / (2 * k * l)
+    C = τψ / (4 * b)
+
+    return (A + B + C) ** 0.5
