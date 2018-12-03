@@ -76,10 +76,20 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
                           interval)
 
         # Find engines' velocities
-        ω1.append(min(max(ω1_d, 100), 500))
-        ω2.append(min(max(ω2_d, 100), 500))
-        ω3.append(min(max(ω3_d, 100), 500))
-        ω4.append(min(max(ω4_d, 100), 500))
+
+        if type(ω1_d) is complex:
+            ω1_d = 0
+        if type(ω2_d) is complex:
+            ω2_d = 0
+        if type(ω3_d) is complex:
+            ω3_d = 0
+        if type(ω4_d) is complex:
+            ω4_d = 0
+
+        ω1.append(min(max(ω1_d, 0), 500))
+        ω2.append(min(max(ω2_d, 0), 500))
+        ω3.append(min(max(ω3_d, 0), 500))
+        ω4.append(min(max(ω4_d, 0), 500))
 
         # Find angular accelerations
         d2φ.append(calc_d2φ(ω2[i], ω4[i]))

@@ -4,13 +4,13 @@ from mpl_toolkits.mplot3d import Axes3D
 from integrated_pd_controller_integrator import integrate
 
 # Destination point
-desired = {"x": 0, "y": 1, "z": 0}
+desired = {"x": 50, "y": 0, "z": 500}
 
 x, y, z = integrate(x_desired=desired["x"],
                     y_desired=desired["y"],
                     z_desired=desired["z"],
                     interval=0.1,
-                    iterations=100)
+                    iterations=1000)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, aspect='equal', projection='3d')
