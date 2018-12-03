@@ -13,3 +13,4 @@
 ### Ссылки на статьи
 * [Modelling and control of quadcopter](http://sal.aalto.fi/publications/pdf-files/eluu11_public.pdf)
 * [Инженерный вестник](res/Gurianov.pdf)
+* [ДИССЕРТАЦИЯ на соискание степени МАГИСТРА](http://elib.spbstu.ru/dl/2/v17-5857.pdf/download/v17-5857.pdf)
