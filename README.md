@@ -9,3 +9,7 @@
 где
 
 ![Equations (5)-(8)](res/5-8.png)
+
+### Ссылки на статьи
+* [Modelling and control of quadcopter](http://sal.aalto.fi/publications/pdf-files/eluu11_public.pdf)
+* [Инженерный вестник](res/Gurianov.pdf)
