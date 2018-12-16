@@ -80,10 +80,10 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
                 type(ω3_d) is complex or type(ω4_d) is complex:
             ω1_d = ω2_d = ω3_d = ω4_d = 340
 
-        ω1.append(min(max(ω1_d, 0), 500))
-        ω2.append(min(max(ω2_d, 0), 500))
-        ω3.append(min(max(ω3_d, 0), 500))
-        ω4.append(min(max(ω4_d, 0), 500))
+        ω1.append(min(max(ω1_d, 200), 400))
+        ω2.append(min(max(ω2_d, 200), 400))
+        ω3.append(min(max(ω3_d, 200), 400))
+        ω4.append(min(max(ω4_d, 200), 400))
 
         # Find angular accelerations
         d2φ.append(calc_d2φ(ω2[i], ω4[i]))
@@ -101,9 +101,9 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
         ψ.append(ψ[i - 1] + d1ψ[i - 1] * interval + d2ψ[i] * interval ** 2 / 2)
 
         # Bound angles
-        φ[i] = min(max(φ[i], -0.15), 0.15)
-        θ[i] = min(max(θ[i], -0.15), 0.15)
-        ψ[i] = min(max(ψ[i], -0.15), 0.15)
+        φ[i] = min(max(φ[i], -0.05), 0.05)
+        θ[i] = min(max(θ[i], -0.05), 0.05)
+        ψ[i] = min(max(ψ[i], -0.05), 0.05)
 
         # Find linear accelerations
         d2x.append(calc_d2x(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1x[i - 1]))
@@ -149,4 +149,4 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
     print("y", y)
     print("z", z)
 
-    return x, y, z
+    return x, y, z, φ, θ, ψ

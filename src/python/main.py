@@ -2,14 +2,16 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 from integrator.basic_integrator import integrate
-
-# from integrator.ipd_integrator import integrate
+from integrator.ipd_integrator import integrate
 
 # Destination point
 desired = {"x": 5, "y": 10, "z": 10}
 
-ω1 = ω2 = ω3 = ω4 = [340] * 10
-x, y, z, φ, θ, ψ = integrate(ω1, ω2, ω3, ω4, 0.1)
+x, y, z, φ, θ, ψ = integrate(desired["x"],
+                             desired["y"],
+                             desired["z"],
+                             interval=0.1,
+                             iterations=1000)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, aspect='equal', projection='3d')
