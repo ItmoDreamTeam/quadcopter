@@ -87,4 +87,4 @@ def integrate(ω1, ω2, ω3, ω4, interval):
     print("y", y)
     print("z", z)
 
-    return x, y, z
+    return x, y, z, φ, θ, ψ

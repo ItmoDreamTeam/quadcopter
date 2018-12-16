@@ -8,14 +8,8 @@ from integrator.basic_integrator import integrate
 # Destination point
 desired = {"x": 5, "y": 10, "z": 10}
 
-# x, y, z = integrate(x_desired=desired["x"],
-#                     y_desired=desired["y"],
-#                     z_desired=desired["z"],
-#                     interval=0.1,
-#                     iterations=1000)
-
 ω1 = ω2 = ω3 = ω4 = [340] * 10
-x, y, z = integrate(ω1, ω2, ω3, ω4, 0.1)
+x, y, z, φ, θ, ψ = integrate(ω1, ω2, ω3, ω4, 0.1)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, aspect='equal', projection='3d')
@@ -39,4 +33,12 @@ plt.plot(len(x), desired["y"], ".c")
 plt.plot(len(x), desired["z"], ".m")
 plt.xlabel("Time")
 plt.legend(["X", "Y", "Z"])
+plt.show()
+
+plt.plot(φ, "g")
+plt.plot(θ, "c")
+plt.plot(ψ, "m")
+plt.plot(0, 0, ".b")
+plt.xlabel("Time")
+plt.legend(["Крен φ", "Тангаж θ", "Рысканье ψ"])
 plt.show()
