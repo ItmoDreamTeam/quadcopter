@@ -1,4 +1,4 @@
-from src.python.integrated_pd_controller import *
+from controller.ipd import *
 
 
 def integrate(x_desired, y_desired, z_desired, interval, iterations):
