@@ -1,5 +1,4 @@
-from phlib import *
-from integrated_pd_controller import *
+from src.python.integrated_pd_controller import *
 
 
 def integrate(x_desired, y_desired, z_desired, interval, iterations):

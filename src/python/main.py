@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
-from integrated_pd_controller_integrator import integrate
+from src.python.integrated_pd_controller_integrator import integrate
 
 # Destination point
 desired = {"x": 5, "y": 10, "z": 10}
