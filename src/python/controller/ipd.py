@@ -23,6 +23,11 @@ KyDD = 1
 KzDD = 1
 
 
+def from_genom(genom: [float]) -> None:
+    global KxP, KyP, KzP, KφP, KθP, KψP, KxD, KyD, KzD, KφD, KθD, KψD, KxDD, KyDD, KzDD
+    KxP, KyP, KzP, KφP, KθP, KψP, KxD, KyD, KzD, KφD, KθD, KψD, KxDD, KyDD, KzDD = genom
+
+
 # Equations (26) (http://sal.aalto.fi/publications/pdf-files/eluu11_public.pdf)
 def calc_φc(Dx, Dy, Dz, ψ):
     return asin((Dx * sin(ψ) - Dy * cos(ψ)) / (Dx ** 2 + Dy ** 2 + (Dz + g) ** 2))

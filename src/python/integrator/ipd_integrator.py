@@ -2,6 +2,8 @@ from controller.ipd import *
 
 
 def integrate(x_desired, y_desired, z_desired, interval, iterations):
+    loss = 0
+
     # Coordinates
     x = [0]
     y = [0]
@@ -100,11 +102,6 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
         θ.append(θ[i - 1] + d1θ[i - 1] * interval + d2θ[i] * interval ** 2 / 2)
         ψ.append(ψ[i - 1] + d1ψ[i - 1] * interval + d2ψ[i] * interval ** 2 / 2)
 
-        # Bound angles
-        φ[i] = min(max(φ[i], -0.05), 0.05)
-        θ[i] = min(max(θ[i], -0.05), 0.05)
-        ψ[i] = min(max(ψ[i], -0.05), 0.05)
-
         # Find linear accelerations
         d2x.append(calc_d2x(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1x[i - 1]))
         d2y.append(calc_d2y(ω1[i], ω2[i], ω3[i], ω4[i], φ[i], θ[i], ψ[i], d1y[i - 1]))
@@ -120,33 +117,38 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
         y.append(y[i - 1] + d1y[i - 1] * interval + d2y[i] * interval ** 2 / 2)
         z.append(z[i - 1] + d1z[i - 1] * interval + d2z[i] * interval ** 2 / 2)
 
-    print("ω1", ω1)
-    print("ω2", ω2)
-    print("ω3", ω3)
-    print("ω4", ω4)
+        loss += abs(x[i] - interval * i * x_desired / (interval * iterations)) + \
+                abs(y[i] - interval * i * y_desired / (interval * iterations)) + \
+                abs(z[i] - interval * i * z_desired / (interval * iterations))
 
-    print("d2φ", d2φ)
-    print("d2θ", d2θ)
-    print("d2ψ", d2ψ)
+    if False:
+        print("ω1", ω1)
+        print("ω2", ω2)
+        print("ω3", ω3)
+        print("ω4", ω4)
 
-    print("d1φ", d1φ)
-    print("d1θ", d1θ)
-    print("d1ψ", d1ψ)
+        print("d2φ", d2φ)
+        print("d2θ", d2θ)
+        print("d2ψ", d2ψ)
 
-    print("φ", φ)
-    print("θ", θ)
-    print("ψ", ψ)
+        print("d1φ", d1φ)
+        print("d1θ", d1θ)
+        print("d1ψ", d1ψ)
 
-    print("d2x", d2x)
-    print("d2y", d2y)
-    print("d2z", d2z)
+        print("φ", φ)
+        print("θ", θ)
+        print("ψ", ψ)
 
-    print("d1x", d1x)
-    print("d1y", d1y)
-    print("d1z", d1z)
+        print("d2x", d2x)
+        print("d2y", d2y)
+        print("d2z", d2z)
 
-    print("x", x)
-    print("y", y)
-    print("z", z)
+        print("d1x", d1x)
+        print("d1y", d1y)
+        print("d1z", d1z)
 
-    return x, y, z, φ, θ, ψ
+        print("x", x)
+        print("y", y)
+        print("z", z)
+
+    return x, y, z, φ, θ, ψ, loss
