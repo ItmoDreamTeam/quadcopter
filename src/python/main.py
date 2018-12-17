@@ -6,9 +6,9 @@ from integrator.ipd_integrator import integrate
 
 K_FILE = "/k.json"
 
-desired = {"x": 5, "y": 10, "z": 10}
+desired = {"x": 1, "y": 3, "z": 29}
 interval = 0.1
-iterations = 100
+iterations = 1000
 
 if __name__ == '__main__':
     with open("." + K_FILE) as f:

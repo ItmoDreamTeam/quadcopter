@@ -45,7 +45,7 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
     θc = [0]
     ψc = [0]
 
-    for i in range(1, iterations):
+    for i in range(1, int(iterations * 1.25)):
         # Find desired engines velocities
         ω1_d = ω1_desired(x[i - 1], d1x[i - 1], d2x[i - 1], x_desired,
                           y[i - 1], d1y[i - 1], d2y[i - 1], y_desired,
@@ -78,8 +78,8 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
 
         # Find engines' velocities
 
-        if type(ω1_d) is complex or type(ω2_d) is complex or \
-                type(ω3_d) is complex or type(ω4_d) is complex:
+        if type(ω1_d) is complex or type(ω2_d) is complex or type(ω3_d) is complex or type(ω4_d) is complex or \
+                ω1_d != ω1_d or ω2_d != ω2_d or ω3_d != ω3_d or ω4_d != ω4_d:
             ω1_d = ω2_d = ω3_d = ω4_d = 340
 
         ω1.append(min(max(ω1_d, 200), 400))
@@ -117,9 +117,11 @@ def integrate(x_desired, y_desired, z_desired, interval, iterations):
         y.append(y[i - 1] + d1y[i - 1] * interval + d2y[i] * interval ** 2 / 2)
         z.append(z[i - 1] + d1z[i - 1] * interval + d2z[i] * interval ** 2 / 2)
 
-        loss += abs(x[i] - interval * i * x_desired / (interval * iterations)) + \
-                abs(y[i] - interval * i * y_desired / (interval * iterations)) + \
-                abs(z[i] - interval * i * z_desired / (interval * iterations))
+        T = iterations * interval
+        t = max(i * interval, T)
+        loss += abs(x[i] - x_desired * t / T) + \
+                abs(y[i] - y_desired * t / T) + \
+                abs(z[i] - z_desired * t / T)
 
     if False:
         print("ω1", ω1)

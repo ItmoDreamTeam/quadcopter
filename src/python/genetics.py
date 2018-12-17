@@ -12,7 +12,7 @@ def test(genom):
 
 
 def train():
-    result = differential_evolution(test, maxiter=2, popsize=1, bounds=[(0.01, 1)] * 15)
+    result = differential_evolution(test, bounds=[(0.001, 1)] * 15, maxiter=100, popsize=5)
     print(result)
     with open(".." + K_FILE, "w") as f:
         json.dump(list(result["x"]), f)
