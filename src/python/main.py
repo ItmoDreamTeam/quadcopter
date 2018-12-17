@@ -1,13 +1,19 @@
 import json
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from controller.ipd import from_genom
 from integrator.ipd_integrator import integrate
+
+K_FILE = "/k.json"
 
 desired = {"x": 5, "y": 10, "z": 10}
 interval = 0.1
 iterations = 100
 
 if __name__ == '__main__':
+    with open("." + K_FILE) as f:
+        from_genom(json.load(f))
+
     x, y, z, φ, θ, ψ, _ = integrate(desired["x"], desired["y"], desired["z"], interval, iterations)
 
     fig = plt.figure()
