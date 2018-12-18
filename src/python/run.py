@@ -30,6 +30,14 @@ if __name__ == '__main__':
     ax.set_zlabel('Z')
     fig.show()
 
+    plt.plot(φ, "g")
+    plt.plot(θ, "c")
+    plt.plot(ψ, "m")
+    plt.plot(0, 0, ".b")
+    plt.xlabel("Time")
+    plt.legend(["Крен φ", "Тангаж θ", "Рысканье ψ"])
+    plt.show()
+
     plt.plot(x, "g")
     plt.plot(y, "c")
     plt.plot(z, "m")
@@ -39,12 +47,4 @@ if __name__ == '__main__':
     plt.plot(len(x), desired["z"], ".m")
     plt.xlabel("Time")
     plt.legend(["X", "Y", "Z"])
-    plt.show()
-
-    plt.plot(φ, "g")
-    plt.plot(θ, "c")
-    plt.plot(ψ, "m")
-    plt.plot(0, 0, ".b")
-    plt.xlabel("Time")
-    plt.legend(["Крен φ", "Тангаж θ", "Рысканье ψ"])
     plt.show()

@@ -11,7 +11,7 @@ def validate(genom):
 
 
 def train():
-    result = differential_evolution(validate, bounds=[(0.001, 1)] * 15, maxiter=100, popsize=5)
+    result = differential_evolution(validate, bounds=[(0.001, 3)] * 15)
     print(result)
     with open(K_FILE, "w") as source:
         json.dump(list(result["x"]), source)
