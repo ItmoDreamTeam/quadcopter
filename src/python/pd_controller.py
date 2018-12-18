@@ -1,8 +1,6 @@
+from math import sin, cos, asin, atan
+
 from physics_base import *
-from math import sin
-from math import cos
-from math import asin
-from math import atan
 
 KxP = 1.85
 KyP = 8.55
