@@ -35,6 +35,18 @@ Let desired angles be zeros: φd = θd = ψd = 0 <br>
 
 
 
+## Finding controller's parameters by Genetic algorithm
+
+##### Genotype
+genotype = {KxP, KyP, KzP, KφP, KθP, KψP, KxD, KyD, KzD, KφD, KθD, KψD, KxDD, KyDD, KzDD}
+
+##### Loss function
+|x - x_a| + |y - y_a| + |z - z_a| -> min <br>
+x_a(t) = kt if t <= T else kT <br>
+where k = x_d / T, T -- flight time
+
+
+
 ### References
 * [Modelling and control of quadcopter](http://sal.aalto.fi/publications/pdf-files/eluu11_public.pdf)
 * [Инженерный вестник](res/Gurianov.pdf)
